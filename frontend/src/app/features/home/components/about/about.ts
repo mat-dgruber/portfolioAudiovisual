@@ -1,0 +1,65 @@
+import { Component, ElementRef, viewChildren, afterNextRender } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import anime from 'animejs';
+
+@Component({
+  selector: 'app-about',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './about.html',
+  styleUrl: './about.css',
+})
+export class AboutComponent {
+  equipmentList = [
+    { category: 'Camera', items: ['ARRI Alexa Mini LF', 'RED V-Raptor', 'Sony FX9'] },
+    {
+      category: 'Lenses',
+      items: ['Cooke Anamorphic /i', 'Zeiss Supreme Prime', 'Angenieux Optimo'],
+    },
+    {
+      category: 'Lighting',
+      items: ['ARRI SkyPanel S60-C', 'Aputure LS 1200d', 'Astera Titan Tubes'],
+    },
+    {
+      category: 'Grip & Movement',
+      items: ['Freefly Mōvi Pro', 'Steadicam Zephyr', 'DJI Ronin 4D'],
+    },
+  ];
+
+  listItems = viewChildren<ElementRef>('equipItem');
+
+  constructor() {
+    afterNextRender(() => {
+      // Intersection Observer to trigger animation when scrolled into view
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.animateEquipmentList();
+              observer.disconnect(); // Only animate once
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+
+      const section = document.getElementById('about');
+      if (section) observer.observe(section);
+    });
+  }
+
+  private animateEquipmentList() {
+    const elements = this.listItems().map((item) => item.nativeElement);
+
+    if (elements.length > 0) {
+      anime({
+        targets: elements,
+        translateY: [30, 0],
+        opacity: [0, 1],
+        delay: anime.stagger(100),
+        duration: 800,
+        easing: 'easeOutExpo',
+      });
+    }
+  }
+}

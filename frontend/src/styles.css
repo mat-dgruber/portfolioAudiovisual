@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cinematic-black text-white antialiased selection:bg-cinematic-teal/30;
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight font-medium;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-glass backdrop-blur-liquid border border-glass rounded-2xl;
+  }
+
+  .liquid-pill {
+    @apply bg-glass backdrop-blur-liquid border border-glass rounded-full px-6 py-2;
+  }
+}
+
+/* Custom scrollbar for cinematic feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cinematic-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cinematic-grey rounded-full border-2 border-cinematic-black hover:bg-cinematic-teal/50 transition-colors;
+}

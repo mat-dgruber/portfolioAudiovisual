@@ -1,0 +1,14 @@
+/* Custom PrimeNG Dialog overrides for cinematic full-screen feel */
+::ng-deep .project-modal .p-dialog-content {
+  overflow: hidden !important;
+}
+
+::ng-deep .project-modal.p-dialog {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .project-modal .p-dialog-mask {
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(10px);
+}

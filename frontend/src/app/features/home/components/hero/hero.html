@@ -1,0 +1,39 @@
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+  <!-- Placeholder for cinematic video background -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-cinematic-black via-cinematic-black/90 to-cinematic-black z-0"
+  >
+    <div class="absolute inset-0 bg-cinematic-teal/5 opacity-20"></div>
+  </div>
+
+  <div class="relative z-10 text-center px-4 max-w-4xl">
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
+      QUIET <span class="text-cinematic-teal">AUTHORITY</span>
+    </h1>
+    <p class="text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+      High-end audiovisual storytelling for high-ticket brands and visionaries. Precise editing.
+      Cinematic vision.
+    </p>
+
+    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+      <button
+        type="button"
+        class="bg-cinematic-teal text-cinematic-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform"
+      >
+        VIEW SHOWREEL
+      </button>
+      <button
+        type="button"
+        onclick="document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })"
+        class="glass-card hover:bg-white/5 transition-all px-8 py-4 !rounded-full"
+      >
+        WORK WITH ME
+      </button>
+    </div>
+  </div>
+
+  <!-- Bottom fade for smooth transition to grid -->
+  <div
+    class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-cinematic-black to-transparent z-10"
+  ></div>
+</section>

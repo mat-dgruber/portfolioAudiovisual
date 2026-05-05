@@ -1,0 +1,17 @@
+
+> frontend@0.0.0 build
+> ng build
+
+❯ Building...
+✔ Building...
+Application bundle generation failed. [1.035 seconds] - 2026-05-05T19:33:19.541Z
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "@angular/animations/browser"[0m
+
+    node_modules/@angular/platform-browser/fesm2022/animations.mjs:10:20:
+[37m      10 │ import * as i1 from [32m'@angular/animations/browser'[37m;
+         ╵                     [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  You can mark the path "@angular/animations/browser" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+
