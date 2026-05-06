@@ -1,6 +1,8 @@
 <header
   #headerElement
-  class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300"
+  class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 transform-gpu"
+  [class.-translate-y-32]="!isVisible()"
+  [class.opacity-0]="!isVisible()"
 >
   <nav class="liquid-pill flex items-center gap-8 shadow-2xl">
     <a href="#" class="text-xl font-bold tracking-tighter text-cinematic-teal">
@@ -9,20 +11,21 @@
 
     <div class="hidden md:flex items-center gap-6">
       <a href="#projects" class="text-sm font-medium hover:text-cinematic-teal transition-colors"
-        >PROJECTS</a
+        >PROJETOS</a
       >
       <a href="#about" class="text-sm font-medium hover:text-cinematic-teal transition-colors"
-        >ABOUT</a
+        >SOBRE</a
       >
       <a href="#services" class="text-sm font-medium hover:text-cinematic-teal transition-colors"
-        >SERVICES</a
+        >SERVIÇOS</a
       >
     </div>
 
     <button
+      onclick="document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })"
       class="bg-cinematic-teal text-cinematic-black px-4 py-1.5 rounded-full text-xs font-bold hover:bg-cinematic-teal/80 transition-all"
     >
-      WORK WITH ME
+      CONTATO
     </button>
   </nav>
 </header>

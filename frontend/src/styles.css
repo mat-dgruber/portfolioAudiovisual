@@ -10,6 +10,12 @@
       system-ui,
       -apple-system,
       sans-serif;
+    cursor: none; /* Hide default cursor */
+  }
+
+  /* Make sure links and buttons don't show the default pointer either */
+  a, button, [role="button"], input, select, textarea {
+    cursor: none;
   }
 
   h1,
@@ -24,11 +30,11 @@
 
 @layer components {
   .glass-card {
-    @apply bg-glass backdrop-blur-liquid border border-glass rounded-2xl;
+    @apply bg-[#0f0f0f]/80 backdrop-blur-md border border-white/5 rounded-2xl;
   }
 
   .liquid-pill {
-    @apply bg-glass backdrop-blur-liquid border border-glass rounded-full px-6 py-2;
+    @apply bg-[#0f0f0f]/80 backdrop-blur-md border border-white/5 rounded-full px-6 py-2;
   }
 }
 

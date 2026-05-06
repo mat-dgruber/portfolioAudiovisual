@@ -1,6 +1,13 @@
-import { Component, signal, HostListener, effect, ElementRef, viewChild } from '@angular/core';
+import {
+  Component,
+  signal,
+  HostListener,
+  effect,
+  ElementRef,
+  viewChild,
+  afterNextRender,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import anime from 'animejs';
 
 @Component({
   selector: 'app-header',
@@ -13,24 +20,6 @@ export class HeaderComponent {
   private lastScrollTop = 0;
   isVisible = signal(true);
   headerRef = viewChild<ElementRef>('headerElement');
-
-  constructor() {
-    // React to visibility changes with Anime.js
-    effect(() => {
-      const visible = this.isVisible();
-      const element = this.headerRef()?.nativeElement;
-
-      if (element) {
-        anime({
-          targets: element,
-          translateY: visible ? 0 : -100,
-          opacity: visible ? 1 : 0,
-          duration: 600,
-          easing: 'cubicBezier(0.4, 0, 0.2, 1)',
-        });
-      }
-    });
-  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
