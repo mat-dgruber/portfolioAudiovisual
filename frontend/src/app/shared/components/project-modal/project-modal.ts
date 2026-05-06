@@ -87,15 +87,28 @@ export class ProjectModalComponent {
   }
 
   private getEmbedUrl(url: string): string {
+    // Parse Vimeo URL
     if (url.includes('vimeo.com')) {
-      const id = url.split('/').pop();
-      return `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0`;
-    } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
-      const id = url.includes('youtu.be')
-        ? url.split('/').pop()
-        : new URL(url).searchParams.get('v');
-      return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      const idMatch = url.match(/vimeo\.com\/(\d+)/);
+      const id = idMatch ? idMatch[1] : url.split('/').pop();
+      // Ensure we use the proper vimeo player base with dnt
+      return `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0&color=0abfa3&dnt=1`;
     }
+
+    // Parse YouTube URL
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      let id = '';
+      if (url.includes('youtu.be')) {
+        id = url.split('/').pop()?.split('?')[0] || '';
+      } else {
+        const searchParams = new URL(url).searchParams;
+        id = searchParams.get('v') || '';
+      }
+
+      // Used youtube-nocookie.com instead of youtube.com to prevent doubleclick errors on load
+      return `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&showinfo=0&modestbranding=1`;
+    }
+
     return url;
   }
 }

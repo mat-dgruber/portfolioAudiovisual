@@ -13,7 +13,7 @@
       <!-- Close Button -->
       <button
         (click)="hide()"
-        class="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-cinematic-black/50 border border-glass backdrop-blur-md flex items-center justify-center text-white hover:text-cinematic-teal hover:border-cinematic-teal/50 transition-colors"
+        class="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-cinematic-black/50 border border-glass backdrop-blur-md flex items-center justify-center text-white hover:text-cinematic-teal hover:border-cinematic-teal/50 transition-colors cursor-pointer"
         aria-label="Close modal"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -29,16 +29,19 @@
       <!-- Video Player Area -->
       <div class="flex-grow h-[50vh] md:h-full bg-black relative flex items-center justify-center">
         @if (safeVideoUrl) {
+          <!-- YouTube embed sandbox params to prevent the "Blocked by client/content blocker" errors in console
+               by avoiding loading doubleclick trackers -->
           <iframe
             [src]="safeVideoUrl"
             class="w-full h-full absolute inset-0"
             frameborder="0"
+            sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen
           >
           </iframe>
         } @else {
-          <div class="text-white/30 text-sm tracking-widest font-light">VIDEO NOT AVAILABLE</div>
+          <div class="text-white/30 text-sm tracking-widest font-light">VÍDEO INDISPONÍVEL</div>
         }
       </div>
 
@@ -56,32 +59,52 @@
           {{ project.title }}
         </h2>
 
-        <div class="space-y-8 flex-grow">
-          <div class="spec-item opacity-0">
-            <h3 class="text-xs font-light text-white/40 uppercase tracking-widest mb-2">Role</h3>
-            <p class="text-lg">{{ project.role }}</p>
+        <div class="space-y-10 flex-grow">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="spec-item opacity-0">
+              <h3 class="text-xs font-light text-white/40 uppercase tracking-widest mb-2">Papel</h3>
+              <p class="text-base font-medium text-white/90">{{ project.role }}</p>
+            </div>
+
+            <div class="spec-item opacity-0">
+              <h3 class="text-xs font-light text-white/40 uppercase tracking-widest mb-2">Ano</h3>
+              <p class="text-base font-medium text-white/90">{{ project.year }}</p>
+            </div>
           </div>
 
           <div class="spec-item opacity-0">
-            <h3 class="text-xs font-light text-white/40 uppercase tracking-widest mb-2">Year</h3>
-            <p class="text-lg">{{ project.year }}</p>
-          </div>
-
-          <div class="spec-item opacity-0">
-            <h3 class="text-xs font-light text-white/40 uppercase tracking-widest mb-4">
-              Technical Specs
+            <h3 class="text-xs font-light text-cinematic-teal uppercase tracking-widest mb-4">
+              Especificações Técnicas
             </h3>
             <ul class="space-y-3">
               @for (gear of project.gear; track gear) {
-                <li class="flex items-start gap-3 text-white/80 font-light">
+                <li class="flex items-center gap-3 text-white/80 font-light text-sm">
                   <span
-                    class="w-1.5 h-1.5 rounded-full bg-glass border border-white/20 mt-2 flex-shrink-0"
+                    class="w-1 h-1 rounded-full bg-cinematic-teal/50 shadow-[0_0_8px_rgba(10,191,163,0.5)] flex-shrink-0"
                   ></span>
                   <span>{{ gear }}</span>
                 </li>
               }
             </ul>
           </div>
+
+          @if (project.credits && project.credits.length > 0) {
+            <div class="spec-item opacity-0 border-t border-glass pt-8 mt-4">
+              <h3 class="text-xs font-light text-cinematic-teal uppercase tracking-widest mb-5">
+                Ficha Técnica (Equipe)
+              </h3>
+              <dl class="space-y-4">
+                @for (credit of project.credits; track credit.name) {
+                  <div class="flex flex-col gap-1">
+                    <dt class="text-xs text-white/40 font-light uppercase tracking-wide">
+                      {{ credit.role }}
+                    </dt>
+                    <dd class="text-sm font-medium text-white/90">{{ credit.name }}</dd>
+                  </div>
+                }
+              </dl>
+            </div>
+          }
         </div>
       </div>
     </div>
