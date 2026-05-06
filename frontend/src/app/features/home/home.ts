@@ -6,6 +6,8 @@ import {
   afterNextRender,
   viewChildren,
   ElementRef,
+  effect,
+  untracked,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroComponent } from './components/hero/hero';
@@ -16,7 +18,7 @@ import { ContactComponent } from './components/contact/contact';
 import { ProjectModalComponent } from '../../shared/components/project-modal/project-modal';
 import { ProjectService } from '../../core/services/project';
 import { Category, Project } from '../../core/models/project.model';
-import { staggerGalleryEntrance } from '../../shared/animations/gallery.animations';
+import { AnimationService } from '../../core/services/animation.service';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +37,7 @@ import { staggerGalleryEntrance } from '../../shared/animations/gallery.animatio
 })
 export class HomeComponent {
   private projectService = inject(ProjectService);
+  private animationService = inject(AnimationService);
 
   projects = this.projectService.getProjects();
   selectedCategory = signal<Category>('Todos');
@@ -57,11 +60,20 @@ export class HomeComponent {
     afterNextRender(() => {
       this.animateGallery();
     });
+
+    // Refined filtering logic: watch for changes in filteredProjects
+    effect(() => {
+      const projects = this.filteredProjects();
+      untracked(() => {
+        // Wait for Angular to update the DOM with the new project cards
+        setTimeout(() => this.animateGallery(), 50);
+      });
+    });
   }
 
   setCategory(category: Category) {
     this.selectedCategory.set(category);
-    setTimeout(() => this.animateGallery(), 0);
+    // Animation is now handled by the effect above
   }
 
   openProject(project: Project) {
@@ -72,7 +84,7 @@ export class HomeComponent {
   private animateGallery() {
     const elements = this.projectCards().map((card) => card.nativeElement);
     if (elements.length > 0) {
-      staggerGalleryEntrance(elements);
+      this.animationService.galleryEntrance(elements);
     }
   }
 }
