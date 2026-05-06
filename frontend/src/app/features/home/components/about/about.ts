@@ -11,19 +11,16 @@ import anime from 'animejs';
 })
 export class AboutComponent {
   equipmentList = [
-    { category: 'Camera', items: ['ARRI Alexa Mini LF', 'RED V-Raptor', 'Sony FX9'] },
+    { category: 'Câmeras', items: ['ARRI Alexa Mini LF', 'RED V-Raptor', 'Sony FX9'] },
     {
-      category: 'Lenses',
+      category: 'Lentes',
       items: ['Cooke Anamorphic /i', 'Zeiss Supreme Prime', 'Angenieux Optimo'],
     },
     {
-      category: 'Lighting',
+      category: 'Iluminação',
       items: ['ARRI SkyPanel S60-C', 'Aputure LS 1200d', 'Astera Titan Tubes'],
     },
-    {
-      category: 'Grip & Movement',
-      items: ['Freefly Mōvi Pro', 'Steadicam Zephyr', 'DJI Ronin 4D'],
-    },
+    { category: 'Movimento', items: ['Freefly Mōvi Pro', 'Steadicam Zephyr', 'DJI Ronin 4D'] },
   ];
 
   listItems = viewChildren<ElementRef>('equipItem');

@@ -37,17 +37,17 @@ export class HomeComponent {
   private projectService = inject(ProjectService);
 
   projects = this.projectService.getProjects();
-  selectedCategory = signal<Category>('All');
+  selectedCategory = signal<Category>('Todos');
 
   // Modal state
   selectedProject = signal<Project | null>(null);
   isModalVisible = signal<boolean>(false);
 
-  categories: Category[] = ['All', 'Commercial', 'Music Video', 'Narrative'];
+  categories: Category[] = ['Todos', 'Comercial', 'Videoclipe', 'Narrativa'];
 
   filteredProjects = computed(() => {
     const category = this.selectedCategory();
-    if (category === 'All') return this.projects();
+    if (category === 'Todos') return this.projects();
     return this.projects().filter((p) => p.category === category);
   });
 

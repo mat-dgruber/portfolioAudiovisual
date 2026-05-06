@@ -1,39 +1,56 @@
-<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-  <!-- Placeholder for cinematic video background -->
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-cinematic-black via-cinematic-black/90 to-cinematic-black z-0"
-  >
-    <div class="absolute inset-0 bg-cinematic-teal/5 opacity-20"></div>
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+  <!-- YouTube Cinematic Video Background -->
+  <div class="absolute inset-0 z-0 bg-black pointer-events-none overflow-hidden">
+    <iframe
+      class="absolute top-1/2 left-1/2 w-[300vw] h-[300vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 opacity-70 mix-blend-screen scale-125 z-10"
+      src="https://www.youtube-nocookie.com/embed/Sgxbx65IDeM?autoplay=1&mute=1&controls=0&loop=1&playlist=Sgxbx65IDeM&playsinline=1&rel=0&showinfo=0&disablekb=1&modestbranding=1&iv_load_policy=3&fs=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    >
+    </iframe>
   </div>
 
-  <div class="relative z-10 text-center px-4 max-w-4xl">
-    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
-      QUIET <span class="text-cinematic-teal">AUTHORITY</span>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cinematic-black z-0 pointer-events-none"
+  ></div>
+
+  <!-- Hero Content (Starts hidden, animated via TS) -->
+  <div class="relative z-10 text-center px-4 max-w-4xl pt-16">
+    <h1
+      #heroTitle
+      class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight drop-shadow-2xl opacity-0"
+    >
+      AUTORIDADE <span class="text-cinematic-teal">SILENCIOSA</span>
     </h1>
-    <p class="text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-      High-end audiovisual storytelling for high-ticket brands and visionaries. Precise editing.
-      Cinematic vision.
+    <p
+      #heroDesc
+      class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-lg opacity-0"
+    >
+      Narrativa audiovisual de alto padrão para marcas e projetos visionários. Edição precisa. Visão
+      cinematográfica.
     </p>
 
-    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+    <div #heroButtons class="flex flex-col md:flex-row items-center justify-center gap-4 opacity-0">
       <button
         type="button"
-        class="bg-cinematic-teal text-cinematic-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform"
+        onclick="document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })"
+        class="liquid-pill hover:bg-white/10 transition-all font-bold tracking-widest text-sm text-cinematic-teal shadow-xl cursor-pointer"
       >
-        VIEW SHOWREEL
+        VER PROJETOS
       </button>
       <button
         type="button"
         onclick="document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })"
-        class="glass-card hover:bg-white/5 transition-all px-8 py-4 !rounded-full"
+        class="liquid-pill hover:bg-white/10 transition-all font-bold tracking-widest text-sm text-white/80 shadow-xl cursor-pointer"
       >
-        WORK WITH ME
+        VAMOS TRABALHAR JUNTOS
       </button>
     </div>
   </div>
 
   <!-- Bottom fade for smooth transition to grid -->
   <div
-    class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-cinematic-black to-transparent z-10"
+    class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-cinematic-black to-transparent z-10 pointer-events-none"
   ></div>
 </section>

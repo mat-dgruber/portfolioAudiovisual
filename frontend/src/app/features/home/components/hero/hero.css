@@ -1,0 +1,17 @@
+/* Ensure the iframe covers the container but keeps aspect ratio without letterboxing */
+iframe {
+  pointer-events: none;
+  /* Reduced the delay to 0.5s so the video starts fading in much earlier,
+     but kept the duration at 3s for a slow cinematic reveal */
+  animation: videoFadeIn 3s ease-in 0.5s forwards;
+  opacity: 0;
+}
+
+@keyframes videoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}

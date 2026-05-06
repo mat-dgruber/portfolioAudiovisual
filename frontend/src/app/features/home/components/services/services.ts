@@ -13,28 +13,29 @@ export class ServicesComponent {
   services = [
     {
       id: '01',
-      title: 'Commercial Production',
+      title: 'Produção de Comerciais',
       description:
-        "High-end visual storytelling designed to elevate brand perception and drive engagement. From concept to final delivery, ensuring every frame aligns with the brand's strategic goals.",
+        'Narrativa visual de alto padrão desenvolvida para elevar a percepção da marca e gerar engajamento. Do conceito à entrega final, garantindo que cada quadro esteja alinhado com os objetivos estratégicos da marca.',
       icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
     },
     {
       id: '02',
-      title: 'Music Videos',
+      title: 'Videoclipes',
       description:
-        'Translating sonic landscapes into striking visual aesthetics. Focusing on rhythm, color theory, and dynamic lighting to create memorable, repeatable viewing experiences.',
+        'Traduzindo paisagens sonoras em estética visual marcante. Foco no ritmo, teoria das cores e design dinâmico de luzes para criar experiências memoráveis que exigem o "replay".',
       icon: 'M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3',
     },
     {
       id: '03',
-      title: 'Cinematography',
+      title: 'Direção de Fotografia',
       description:
-        'Director of Photography services for narrative films and documentaries. Crafting the visual language through careful selection of camera format, lenses, and lighting design.',
+        'Serviços de DP (Director of Photography) para filmes narrativos e documentários. Criação da linguagem visual através de uma seleção minuciosa de formato de câmera, lentes e luz.',
       icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z',
     },
   ];
 
   serviceCards = viewChildren<ElementRef>('serviceCard');
+  sectionTitle = viewChildren<ElementRef>('sectionTitle');
 
   constructor() {
     afterNextRender(() => {
@@ -57,13 +58,24 @@ export class ServicesComponent {
 
   private animateServices() {
     const elements = this.serviceCards().map((card) => card.nativeElement);
+    const titleElements = this.sectionTitle().map((title) => title.nativeElement);
+
+    if (titleElements.length > 0) {
+      anime({
+        targets: titleElements,
+        translateY: [30, 0],
+        opacity: [0, 1],
+        duration: 800,
+        easing: 'easeOutQuart',
+      });
+    }
 
     if (elements.length > 0) {
       anime({
         targets: elements,
         translateY: [50, 0],
         opacity: [0, 1],
-        delay: anime.stagger(150),
+        delay: anime.stagger(150, { start: 200 }),
         duration: 1000,
         easing: 'easeOutQuart',
       });

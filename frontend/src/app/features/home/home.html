@@ -5,9 +5,9 @@
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
       <div>
         <span class="text-cinematic-teal text-sm font-bold tracking-widest uppercase mb-2 block"
-          >Curated Work</span
+          >Seleção Especial</span
         >
-        <h2 class="text-4xl md:text-5xl font-bold">PROJECT GALLERY</h2>
+        <h2 class="text-4xl md:text-5xl font-bold">PROJETOS EM DESTAQUE</h2>
       </div>
 
       <!-- Category Filters -->
@@ -20,7 +20,7 @@
             [class.border-cinematic-teal]="selectedCategory() === cat"
             [class.text-white/40]="selectedCategory() !== cat"
             class="text-sm font-bold tracking-tighter hover:text-white transition-all pb-1 uppercase"
-            [attr.aria-label]="'Filter projects by ' + cat"
+            [attr.aria-label]="'Filtrar projetos por ' + cat"
           >
             {{ cat }}
           </button>
@@ -36,7 +36,7 @@
           class="glass-card aspect-video group cursor-pointer overflow-hidden relative opacity-0"
           role="listitem"
           tabindex="0"
-          [attr.aria-label]="'View project: ' + project.title"
+          [attr.aria-label]="'Ver projeto: ' + project.title"
           (click)="openProject(project)"
           (keydown.enter)="openProject(project)"
         >
@@ -73,7 +73,7 @@
         </div>
       } @empty {
         <div class="col-span-full py-24 text-center text-white/50">
-          No projects found in this category.
+          Nenhum projeto encontrado nesta categoria.
         </div>
       }
     </div>
