@@ -8,30 +8,30 @@
     <!-- Contact Info -->
     <div>
       <span class="text-cinematic-teal text-sm font-bold tracking-widest uppercase mb-2 block"
-        >Let's Collaborate</span
+        >Vamos Trabalhar Juntos</span
       >
       <h2 class="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 tracking-tighter leading-[0.9]">
-        READY TO<br />CREATE?
+        PRONTO PARA<br />CRIAR?
       </h2>
 
       <p class="text-lg text-white/60 font-light max-w-md mb-12">
-        Whether you have a fully formed concept or just a rough idea, let's talk about how we can
-        bring it to life with cinematic precision.
+        Seja um conceito já formado ou apenas uma ideia inicial, vamos conversar sobre como podemos
+        trazer isso à vida com precisão cinematográfica.
       </p>
 
       <div class="space-y-6">
         <div>
           <h4 class="text-xs text-white/40 uppercase tracking-widest mb-1">Email</h4>
           <a
-            href="mailto:hello@matheusdiniz.com"
+            href="mailto:matheus.gruber123@gmail.com"
             class="text-xl font-light hover:text-cinematic-teal transition-colors"
-            >hello&#64;matheusdiniz.com</a
+            >matheus.gruber123&#64;gmail.com</a
           >
         </div>
         <div>
-          <h4 class="text-xs text-white/40 uppercase tracking-widest mb-1">Location</h4>
+          <h4 class="text-xs text-white/40 uppercase tracking-widest mb-1">Localização</h4>
           <p class="text-xl font-light">
-            São Paulo, BR <span class="text-white/20 ml-2">Available Worldwide</span>
+            Tatuí, SP <span class="text-white/20 ml-2">Disponível Globalmente</span>
           </p>
         </div>
       </div>
@@ -55,9 +55,9 @@
               ></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold mb-2">Message Sent</h3>
+          <h3 class="text-2xl font-bold mb-2">Mensagem Enviada</h3>
           <p class="text-white/60 font-light">
-            Thank you for reaching out. I'll get back to you shortly to discuss your project.
+            Obrigado pelo contato. Responderei em breve para discutir os detalhes do seu projeto.
           </p>
         </div>
       }
@@ -66,24 +66,24 @@
       <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-6">
         @if (submitError()) {
           <div class="p-4 bg-red-500/10 border border-red-500/30 text-red-200 text-sm rounded-sm">
-            There was an error sending your message. Please verify you've added your Formspree ID or
-            try emailing directly.
+            Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente ou envie um email
+            diretamente.
           </div>
         }
 
         <!-- Name -->
         <div class="flex flex-col gap-2">
-          <label for="name" class="text-xs uppercase tracking-widest text-white/60">Name</label>
+          <label for="name" class="text-xs uppercase tracking-widest text-white/60">Nome</label>
           <input
             type="text"
             id="name"
             formControlName="name"
             name="name"
             class="bg-transparent border-b border-glass pb-3 text-lg focus:outline-none focus:border-cinematic-teal transition-colors rounded-none placeholder:text-white/20"
-            placeholder="Your name or company"
+            placeholder="Seu nome ou empresa"
           />
           @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
-            <span class="text-xs text-red-400 mt-1">Name is required.</span>
+            <span class="text-xs text-red-400 mt-1">Nome é obrigatório.</span>
           }
         </div>
 
@@ -94,19 +94,19 @@
             type="email"
             id="email"
             formControlName="email"
-            name="_replyto"
+            name="email"
             class="bg-transparent border-b border-glass pb-3 text-lg focus:outline-none focus:border-cinematic-teal transition-colors rounded-none placeholder:text-white/20"
-            placeholder="you@example.com"
+            placeholder="voce@exemplo.com"
           />
           @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
-            <span class="text-xs text-red-400 mt-1">Valid email is required.</span>
+            <span class="text-xs text-red-400 mt-1">É necessário um email válido.</span>
           }
         </div>
 
         <!-- Project Type -->
         <div class="flex flex-col gap-2">
           <label for="projectType" class="text-xs uppercase tracking-widest text-white/60"
-            >Project Type</label
+            >Tipo de Projeto</label
           >
           <select
             id="projectType"
@@ -123,7 +123,7 @@
         <!-- Message -->
         <div class="flex flex-col gap-2">
           <label for="message" class="text-xs uppercase tracking-widest text-white/60"
-            >Project Details</label
+            >Detalhes do Projeto</label
           >
           <textarea
             id="message"
@@ -131,11 +131,11 @@
             name="message"
             rows="4"
             class="bg-transparent border-b border-glass pb-3 text-lg focus:outline-none focus:border-cinematic-teal transition-colors rounded-none placeholder:text-white/20 resize-none"
-            placeholder="Tell me about your vision, timeline, and budget..."
+            placeholder="Conte um pouco sobre sua visão, cronograma e orçamento..."
           ></textarea>
           @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
             <span class="text-xs text-red-400 mt-1"
-              >Please provide some details about the project.</span
+              >Por favor, forneça alguns detalhes sobre o projeto.</span
             >
           }
         </div>
@@ -146,7 +146,7 @@
           [disabled]="isSubmitting()"
           class="mt-4 py-4 px-8 bg-cinematic-teal text-cinematic-black font-bold tracking-widest uppercase hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
         >
-          <span [class.opacity-0]="isSubmitting()" class="transition-opacity">Send Inquiry</span>
+          <span [class.opacity-0]="isSubmitting()" class="transition-opacity">Enviar Contato</span>
 
           @if (isSubmitting()) {
             <div class="absolute inset-0 flex items-center justify-center">

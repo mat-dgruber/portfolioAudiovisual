@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -18,7 +18,11 @@ export class ContactService {
   private formspreeUrl = environment.formspreeUrl;
 
   submitContact(data: ContactRequest): Observable<any> {
-    // Formspree accepts direct POST requests with JSON payload
-    return this.http.post(this.formspreeUrl, data);
+    // Formspree requires specific headers to accept ajax submission directly
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });
+
+    return this.http.post(this.formspreeUrl, data, { headers });
   }
 }

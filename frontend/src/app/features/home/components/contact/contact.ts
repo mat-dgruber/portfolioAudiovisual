@@ -17,7 +17,7 @@ export class ContactComponent {
   contactForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
-    projectType: ['Commercial', [Validators.required]],
+    projectType: ['Comercial', [Validators.required]],
     message: ['', [Validators.required, Validators.minLength(10)]],
   });
 
@@ -25,7 +25,7 @@ export class ContactComponent {
   submitSuccess = signal(false);
   submitError = signal(false);
 
-  projectTypes = ['Commercial', 'Music Video', 'Narrative', 'Other'];
+  projectTypes = ['Comercial', 'Videoclipe', 'Narrativa', 'Outros'];
 
   onSubmit() {
     if (this.contactForm.invalid) {
@@ -42,7 +42,7 @@ export class ContactComponent {
       next: () => {
         this.isSubmitting.set(false);
         this.submitSuccess.set(true);
-        this.contactForm.reset({ projectType: 'Commercial' });
+        this.contactForm.reset({ projectType: 'Comercial' });
 
         // Hide success message after 5 seconds
         setTimeout(() => this.submitSuccess.set(false), 5000);
