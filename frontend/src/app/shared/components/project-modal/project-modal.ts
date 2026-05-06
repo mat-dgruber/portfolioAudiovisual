@@ -6,12 +6,13 @@ import {
   Output,
   EventEmitter,
   signal,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DialogModule } from 'primeng/dialog';
 import { Project } from '../../../core/models/project.model';
-import anime from 'animejs';
+import { AnimationService } from '../../../core/services/animation.service';
 
 @Component({
   selector: 'app-project-modal',
@@ -21,6 +22,9 @@ import anime from 'animejs';
   styleUrl: './project-modal.css',
 })
 export class ProjectModalComponent {
+  private animationService = inject(AnimationService);
+  private sanitizer = inject(DomSanitizer);
+
   @Input() set project(value: Project | null) {
     this._project.set(value);
     if (value && value.videoUrl) {
@@ -56,8 +60,6 @@ export class ProjectModalComponent {
 
   @ViewChild('modalContent') modalContent!: ElementRef;
 
-  constructor(private sanitizer: DomSanitizer) {}
-
   hide() {
     this.visibleChange.emit(false);
   }
@@ -65,25 +67,8 @@ export class ProjectModalComponent {
   private animateEntrance() {
     if (!this.modalContent) return;
 
-    anime({
-      targets: this.modalContent.nativeElement,
-      scale: [0.95, 1],
-      opacity: [0, 1],
-      duration: 600,
-      easing: 'easeOutQuart',
-    });
-
     const specs = this.modalContent.nativeElement.querySelectorAll('.spec-item');
-    if (specs.length > 0) {
-      anime({
-        targets: specs,
-        translateY: [20, 0],
-        opacity: [0, 1],
-        delay: anime.stagger(100, { start: 300 }),
-        duration: 800,
-        easing: 'easeOutQuart',
-      });
-    }
+    this.animationService.modalEntrance(this.modalContent.nativeElement, specs);
   }
 
   private getEmbedUrl(url: string): string {

@@ -1,6 +1,6 @@
-import { Component, ElementRef, viewChildren, afterNextRender } from '@angular/core';
+import { Component, ElementRef, viewChildren, afterNextRender, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import anime from 'animejs';
+import { AnimationService } from '../../../../core/services/animation.service';
 
 @Component({
   selector: 'app-about',
@@ -10,6 +10,8 @@ import anime from 'animejs';
   styleUrl: './about.css',
 })
 export class AboutComponent {
+  private animationService = inject(AnimationService);
+
   equipmentList = [
     { category: 'Câmeras', items: ['ARRI Alexa Mini LF', 'RED V-Raptor', 'Sony FX9'] },
     {
@@ -49,14 +51,7 @@ export class AboutComponent {
     const elements = this.listItems().map((item) => item.nativeElement);
 
     if (elements.length > 0) {
-      anime({
-        targets: elements,
-        translateY: [30, 0],
-        opacity: [0, 1],
-        delay: anime.stagger(100),
-        duration: 800,
-        easing: 'easeOutExpo',
-      });
+      this.animationService.staggerEntrance(elements);
     }
   }
 }

@@ -1,6 +1,6 @@
-import { Component, ElementRef, viewChildren, afterNextRender } from '@angular/core';
+import { Component, ElementRef, viewChildren, afterNextRender, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import anime from 'animejs';
+import { AnimationService } from '../../../../core/services/animation.service';
 
 @Component({
   selector: 'app-services',
@@ -10,6 +10,8 @@ import anime from 'animejs';
   styleUrl: './services.css',
 })
 export class ServicesComponent {
+  private animationService = inject(AnimationService);
+
   services = [
     {
       id: '01',
@@ -61,24 +63,11 @@ export class ServicesComponent {
     const titleElements = this.sectionTitle().map((title) => title.nativeElement);
 
     if (titleElements.length > 0) {
-      anime({
-        targets: titleElements,
-        translateY: [30, 0],
-        opacity: [0, 1],
-        duration: 800,
-        easing: 'easeOutQuart',
-      });
+      this.animationService.staggerEntrance(titleElements);
     }
 
     if (elements.length > 0) {
-      anime({
-        targets: elements,
-        translateY: [50, 0],
-        opacity: [0, 1],
-        delay: anime.stagger(150, { start: 200 }),
-        duration: 1000,
-        easing: 'easeOutQuart',
-      });
+      this.animationService.staggerEntrance(elements, 200);
     }
   }
 }
