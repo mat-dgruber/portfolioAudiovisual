@@ -5,6 +5,8 @@ import { Project } from '../models/project.model';
   providedIn: 'root',
 })
 export class ProjectService {
+  // TODO: Integrate with Headless CMS (Dívida Técnica 2)
+  // This signal will be updated with data from an API call in the future
   private projects = signal<Project[]>([
     {
       id: '1',
