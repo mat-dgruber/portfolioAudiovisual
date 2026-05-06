@@ -1,19 +1,25 @@
 <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-  <!-- YouTube Cinematic Video Background -->
+  <!-- YouTube Cinematic Video Background / Mobile Optimized -->
   <div class="absolute inset-0 z-0 bg-black pointer-events-none overflow-hidden">
-    <iframe
-      class="absolute top-1/2 left-1/2 w-[300vw] h-[300vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 opacity-70 mix-blend-screen scale-125 z-10"
-      src="https://www.youtube-nocookie.com/embed/Sgxbx65IDeM?autoplay=1&mute=1&controls=0&loop=1&playlist=Sgxbx65IDeM&playsinline=1&rel=0&showinfo=0&disablekb=1&modestbranding=1&iv_load_policy=3&fs=0"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    >
-    </iframe>
+    @if (isMobile()) {
+      <!-- Static optimized image for mobile -->
+      <img 
+        src="assets/michael-henry-5OyGRn_r9Y4-unsplash.jpg" 
+        alt="Cinematic Background" 
+        class="w-full h-full object-cover opacity-60 scale-105 animate-slow-zoom"
+      />
+    } @else {
+      <!-- Heavy iframe only for desktop -->
+      <iframe
+        class="absolute top-1/2 left-1/2 w-[300vw] h-[300vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 opacity-70 mix-blend-screen scale-125 z-10"
+        src="https://www.youtube-nocookie.com/embed/Sgxbx65IDeM?autoplay=1&mute=1&controls=0&loop=1&playlist=Sgxbx65IDeM&playsinline=1&rel=0&showinfo=0&disablekb=1&modestbranding=1&iv_load_policy=3&fs=0"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      >
+      </iframe>
+    }
   </div>
-
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cinematic-black z-0 pointer-events-none"
-  ></div>
 
   <!-- Hero Content (Starts hidden, animated via TS) -->
   <div class="relative z-10 text-center px-4 max-w-4xl pt-16">
